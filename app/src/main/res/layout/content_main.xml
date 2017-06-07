@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="brainscholar.brainscholar.MainActivity"
     tools:showIn="@layout/activity_main">
+
+    <Button
+        android:id="@+id/calcButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="148dp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/v0"
+        android:layout_alignRight="@+id/v0"
+        android:layout_alignEnd="@+id/v0"
+        android:layout_alignLeft="@+id/v0"
+        android:layout_alignStart="@+id/v0" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="19dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calcButton"
+        tools:ignore="MissingConstraints"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1">
+
+    </ScrollView>
 
     <EditText
         android:id="@+id/u0"
@@ -15,9 +53,14 @@
         android:ems="10"
         android:hint="@string/u0"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="37dp"
-        tools:ignore="MissingConstraints" />
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_below="@+id/scrollView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
 
     <EditText
         android:id="@+id/v0"
@@ -26,37 +69,29 @@
         android:ems="10"
         android:hint="@string/v0"
         android:inputType="numberDecimal"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="109dp"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/calcButton"
-        android:layout_width="226dp"
-        android:layout_height="48dp"
-        android:text="@string/calculate"
+        android:textAlignment="center"
+        android:visibility="visible"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="192dp"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        tools:layout_editor_absoluteY="88dp"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/u0"
+        android:layout_alignLeft="@+id/u0"
+        android:layout_alignStart="@+id/u0" />
 
-    <ScrollView
-        android:layout_width="337dp"
-        android:layout_height="218dp"
-        tools:layout_editor_absoluteY="283dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:ignore="MissingConstraints">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/calcButton">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/arrayOutput"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/arrayOutput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+            android:visibility="visible" />
+    </LinearLayout>
+</RelativeLayout>

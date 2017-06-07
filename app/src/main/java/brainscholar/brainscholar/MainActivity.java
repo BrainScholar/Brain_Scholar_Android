@@ -72,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-                arrayOutput.setText(f.toString());
+
+                String value = "";
+                for(int i = 0; i < 30; i++) {
+                    value += f[i];
+                }
+                    arrayOutput.setText(value);
+
 
             }
         });
