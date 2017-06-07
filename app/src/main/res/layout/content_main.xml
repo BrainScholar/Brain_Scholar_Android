@@ -13,36 +13,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/u0"
         android:inputType="numberDecimal"
-        android:text="u[0]"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="37dp" />
+        tools:layout_editor_absoluteY="37dp"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/v0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="@string/v0"
         android:inputType="numberDecimal"
-        android:text="v[0]"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="109dp" />
+        tools:layout_editor_absoluteY="109dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/calcButton"
         android:layout_width="226dp"
         android:layout_height="48dp"
-        android:text="Calculate"
+        android:text="@string/calculate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="192dp" />
+        tools:layout_editor_absoluteY="192dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
 
     <ScrollView
         android:layout_width="337dp"
         android:layout_height="218dp"
         tools:layout_editor_absoluteY="283dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"

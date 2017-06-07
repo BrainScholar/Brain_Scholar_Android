@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BrainScholar</string>
     <string name="action_settings">Settings</string>
+    <string name="v0">v0</string>
+    <string name="u0">u0</string>
+    <string name="calculate">Calculate</string>
 </resources>
