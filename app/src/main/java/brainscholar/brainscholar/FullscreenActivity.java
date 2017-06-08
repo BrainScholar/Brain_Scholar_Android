@@ -115,10 +115,10 @@ public class FullscreenActivity extends AppCompatActivity {
         GraphView graph = (GraphView) findViewById(R.id.graph);
         series = new LineGraphSeries<DataPoint>();
 
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 100; i++) {
             x = i;
             y = v[i];
-            series.appendData(new DataPoint(x, y), true, 30);
+            series.appendData(new DataPoint(x, y), true, 100);
         }
         graph.addSeries(series);
 

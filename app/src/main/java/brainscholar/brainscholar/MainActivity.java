@@ -36,21 +36,22 @@ public class MainActivity extends AppCompatActivity {
                 double v_stim = 2;
                 double del_t = 0.001;
 
-                double[] f = new double[30];
-                double[] u = new double[30];
-                double[] v = new double[30];
+                double[] f = new double[100];
+                double[] u = new double[100];
+                double[] v = new double[100];
 
 
                 u[0] = Double.parseDouble(u0.getText().toString());
 
                 v[0] = Double.parseDouble(v0.getText().toString());
 
-                for (int i = 0; i < 29; i++) {
+                for (int i = 0; i < 98; i++) {
                     /*int stinum = i/3000;
                     int stimt = 3000 + 3000 * (stinum - 1);*/
+                    f[i] = v[i] * (1 - ((v[i] * v[i]) / 3));
                     v[i + 1] = 1 / c * (gna * f[i] - gk * u[i]) * del_t + v[i];
                     u[i + 1] = (v[i] + beta - gamma * u[i]) * del_t + u[i];
-                    f[i] = v[i] * (1 - ((v[i] * v[i]) / 3));
+
 
                     if (i % 6 == 0) {
                         v[i + 1] = v[i + 1] + v_stim;
