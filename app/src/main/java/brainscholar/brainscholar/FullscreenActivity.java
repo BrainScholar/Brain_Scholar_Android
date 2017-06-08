@@ -113,6 +113,8 @@ public class FullscreenActivity extends AppCompatActivity {
         double[] v = intent.getDoubleArrayExtra("v");
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
+        
+        graph.setBackgroundColor(getResources().getColor(android.R.color.white));
         series = new LineGraphSeries<DataPoint>();
 
         for (int i = 0; i < 100; i++) {
