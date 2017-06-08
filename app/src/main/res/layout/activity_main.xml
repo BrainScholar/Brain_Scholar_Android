@@ -23,13 +23,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="v0"
-        android:inputType="numberDecimal"
+        android:inputType="numberSigned|numberDecimal"
         android:textAlignment="center"
         tools:layout_editor_absoluteY="92dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/u0"
+        app:layout_constraintBottom_toBottomOf="@+id/calcButton" />
 
     <EditText
         android:id="@+id/u0"
@@ -43,5 +43,5 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/v0" />
 </android.support.constraint.ConstraintLayout>
