@@ -7,10 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.nd4j.linalg.api.ndarray.INDArray;
-import org.nd4j.linalg.factory.Nd4j;
-
-import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,22 +15,69 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText u0 = (EditText)findViewById(R.id.u0);
-        EditText v0 = (EditText)findViewById(R.id.v0);
+        EditText C = (EditText)findViewById(R.id.c);
+        EditText GNA = (EditText)findViewById(R.id.gna);
+        EditText GK = (EditText)findViewById(R.id.gk);
+        EditText BETA = (EditText)findViewById(R.id.beta);
+        EditText GAMMA = (EditText)findViewById(R.id.gamma);
         Button calcButton = (Button) findViewById(R.id.calcButton);
 
         calcButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View vw) {
 
-                EditText u0 = (EditText)findViewById(R.id.u0);
-                EditText v0 = (EditText)findViewById(R.id.v0);
+                EditText C = (EditText)findViewById(R.id.c);
+                EditText GNA = (EditText)findViewById(R.id.gna);
+                EditText GK = (EditText)findViewById(R.id.gk);
+                EditText BETA = (EditText)findViewById(R.id.beta);
+                EditText GAMMA = (EditText)findViewById(R.id.gamma);
 
-                double c = 0.025;
-                double gna = 0.9;
-                double gk = 7;
-                double beta = 0.6;
-                double gamma = -1.0;
+
+                double c;
+                String cCheck = C.getText().toString();
+                if (cCheck.isEmpty()) {
+                    c = 0.025;
+                }
+                else {
+                    c = Double.parseDouble(C.getText().toString());
+                }
+
+
+                double gna;
+                String gnaCheck = GNA.getText().toString();
+                if (gnaCheck.isEmpty()) {
+                    gna = 0.9;
+                }
+                else {
+                    gna = Double.parseDouble(GNA.getText().toString());
+                }
+
+                double gk;
+                String gkCheck = GK.getText().toString();
+                if (gkCheck.isEmpty()) {
+                    gk = 1.1;
+                }
+                else {
+                    gk = Double.parseDouble(GK.getText().toString());
+                }
+
+                double beta;
+                String betaCheck = BETA.getText().toString();
+                if (betaCheck.isEmpty()) {
+                    beta = 0.6;
+                }
+                else {
+                    beta = Double.parseDouble(BETA.getText().toString());
+                }
+
+                double gamma;
+                String gammaCheck = GAMMA.getText().toString();
+                if (gammaCheck.isEmpty()) {
+                    gamma = 1.0;
+                }
+                else {
+                    gamma = Double.parseDouble(GAMMA.getText().toString());
+                }
 
                 double v_stim = 0.9;
                 double del_t = 0.001;
