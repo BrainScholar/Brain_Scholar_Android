@@ -12,6 +12,7 @@ import java.lang.String;
 import java.util.Arrays;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -90,6 +91,9 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
+    private LineGraphSeries<DataPoint> series;
+    private int LastX = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,31 +112,110 @@ public class FullscreenActivity extends AppCompatActivity {
                 toggle();
             }
         });
-        LineGraphSeries<DataPoint> series;
-        double x, y;
+
+        /*double x, y;
 
         Intent intent = getIntent();
         Bundle vArray = intent.getExtras();
         double[] v = vArray.getDoubleArray("v");
         System.out.println(Arrays.toString(v));
-        int tsize = intent.getIntExtra("tsize", 1200);
+        int tsize = intent.getIntExtra("tsize", 1200);*/
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
-
         graph.setBackgroundColor(getResources().getColor(android.R.color.white));
-        series = new LineGraphSeries<DataPoint>();
 
-        for (int i = 0; i < tsize; i++) {
+        series = new LineGraphSeries<DataPoint>();
+        graph.addSeries(series);
+
+        Viewport viewport = graph.getViewport();
+        viewport.setYAxisBoundsManual(true);
+        viewport.setXAxisBoundsManual(true);
+        viewport.setScalable(true);
+        series.setThickness(5);
+        series.setAnimated(true);
+
+        /*for (int i = 0; i < tsize; i++) {
             x = i;
             y = v[i];
             series.appendData(new DataPoint(x, y), true, tsize);
         }
-        graph.addSeries(series);
+        graph.addSeries(series);*/
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new Thread(new Runnable() {
+
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            addEntry();
+                        }
+                    });
+                }
+                try {
+                    Thread.sleep(6000);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        });
+    }
+
+    private void addEntry() {
+        Intent intent = getIntent();
+        double c = intent.getIntExtra("c", 0);
+        double gna = intent.getIntExtra("gna", 0);
+        double gk = intent.getIntExtra("gk", 0);
+        double beta = intent.getIntExtra("beta", 0);
+        double gamma = intent.getIntExtra("gamma", 0);
+        System.out.println(c);
+        System.out.println(gna);
+        System.out.println(gk);
+        System.out.println(beta);
+        System.out.println(gamma);
+        double v_stim = 0.9;
+        double del_t = 0.001;
+        int cl = 30;
+        int T = cl * 4;
+        Double num = T/del_t;
+
+        double f;
+        double v;
+        double u;
+
+        u = -1.1;
+        v = -1.2;
+
+
+        int i = LastX;
+
+        double floor = i / 3000;
+        double stinum = Math.floor(floor);
+        Double stimt = 3000 + 3000 * (stinum - 1);
+        Integer intstim = stimt.intValue();
+
+
+        f = v * (1 - ((v * v) / 3));
+        v = 1 / c * (gna * f - gk * u) * del_t + v;
+        if (intstim.equals(i)) {
+            v = v + v_stim;
+        }
+        u = (v + beta - gamma * u) * del_t + u;
+        series.appendData(new DataPoint(LastX++, v), true, 10000);
+
+
+
     }
 
     @Override

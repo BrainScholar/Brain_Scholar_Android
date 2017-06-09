@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     gamma = Double.parseDouble(GAMMA.getText().toString());
                 }
 
-                double v_stim = 0.9;
+                /*double v_stim = 0.9;
                 double del_t = 0.001;
                 int cl = 30;
                 int T = cl * 4;
@@ -107,13 +107,18 @@ public class MainActivity extends AppCompatActivity {
                         v[i + 1] = v[i + 1] + v_stim;
                     }
                     u[i + 1] = (v[i] + beta - gamma * u[i]) * del_t + u[i];
-                }
+                }*/
 
                 int tsize = 10000;
-                Bundle vArray = new Bundle();
-                vArray.putDoubleArray("v", v);
+                /*Bundle vArray = new Bundle();
+                vArray.putDoubleArray("v", v);*/
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
-                intent.putExtras(vArray);
+                /*intent.putExtras(vArray);*/
+                intent.putExtra("c", c);
+                intent.putExtra("gna", gna);
+                intent.putExtra("gk", gk);
+                intent.putExtra("beta", beta);
+                intent.putExtra("gamma", gamma);
                 intent.putExtra("tsize", tsize);
                 startActivity(intent);
 
