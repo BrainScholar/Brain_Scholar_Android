@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import java.lang.String;
+import java.util.Arrays;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -110,17 +112,20 @@ public class FullscreenActivity extends AppCompatActivity {
         double x, y;
 
         Intent intent = getIntent();
-        double[] v = intent.getDoubleArrayExtra("v");
+        Bundle vArray = intent.getExtras();
+        double[] v = vArray.getDoubleArray("v");
+        System.out.println(Arrays.toString(v));
+        int tsize = intent.getIntExtra("tsize", 1200);
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        
+
         graph.setBackgroundColor(getResources().getColor(android.R.color.white));
         series = new LineGraphSeries<DataPoint>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < tsize; i++) {
             x = i;
             y = v[i];
-            series.appendData(new DataPoint(x, y), true, 100);
+            series.appendData(new DataPoint(x, y), true, tsize);
         }
         graph.addSeries(series);
 
