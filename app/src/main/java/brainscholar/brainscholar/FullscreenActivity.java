@@ -9,13 +9,9 @@ import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.util.Random;
-
 public class FullscreenActivity extends AppCompatActivity {
 
     private LineGraphSeries<DataPoint> series;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +38,9 @@ public class FullscreenActivity extends AppCompatActivity {
         viewport.scrollToEnd();
         ;
     }
+
     public int iteration = 0;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -51,7 +49,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                // we add 100 new entries
+                // we add new entries
                 double c = getIntent().getDoubleExtra("c", 0.025);
                 double gna = getIntent().getDoubleExtra("gna", 0.9);
                 double gk = getIntent().getDoubleExtra("gk", 1.1);
@@ -94,7 +92,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
                     // sleep to slow down the add of entries
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(2);
                     } catch (InterruptedException e) {
                         // manage error ...
                     }

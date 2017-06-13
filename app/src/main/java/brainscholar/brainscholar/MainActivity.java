@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
                 SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                 SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
 
-
-
                 double c = C.getProgress();
                 c = c/1000;
 
@@ -48,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
                 double v_stim = V_STIM.getProgress();
                 v_stim = v_stim/10;
-
-
 
 
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);

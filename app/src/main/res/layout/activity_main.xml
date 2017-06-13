@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@android:color/background_light"
     tools:context="brainscholar.brainscholar.MainActivity">
+
 
     <TextView
         android:id="@+id/cLabel"
@@ -12,11 +14,11 @@
         android:layout_height="wrap_content"
         android:text="C"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintVertical_bias="0.742" />
 
     <TextView
@@ -25,11 +27,11 @@
         android:layout_height="wrap_content"
         android:text="Gamma"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.449" />
 
     <SeekBar
@@ -38,12 +40,14 @@
         android:layout_height="30dp"
         android:max="100"
         android:progress="25"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.798"
-        app:layout_constraintHorizontal_bias="0.54" />
+        app:layout_constraintVertical_bias="0.798" />
 
     <SeekBar
         android:id="@+id/v_stim"
@@ -51,10 +55,12 @@
         android:layout_height="28dp"
         android:max="50"
         android:progress="9"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.658" />
 
     <TextView
@@ -63,10 +69,10 @@
         android:layout_height="wrap_content"
         android:text="v stim"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.609" />
 
     <TextView
@@ -75,10 +81,10 @@
         android:layout_height="wrap_content"
         android:text="Potassium"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
@@ -87,23 +93,24 @@
         android:layout_height="wrap_content"
         android:text="Sodium"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintVertical_bias="0.048" />
 
     <Button
         android:id="@+id/calcButton"
         android:layout_width="221dp"
         android:layout_height="48dp"
+        android:backgroundTint="@android:color/background_light"
         android:text="Calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintVertical_bias="0.965" />
 
     <SeekBar
@@ -112,11 +119,14 @@
         android:layout_height="37dp"
         android:max="50"
         android:progress="9"
+        android:progressBackgroundTint="@android:color/black"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.054" />
 
     <SeekBar
@@ -125,11 +135,13 @@
         android:layout_height="37dp"
         android:max="50"
         android:progress="11"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.244" />
 
     <SeekBar
@@ -138,11 +150,13 @@
         android:layout_height="33dp"
         android:max="100"
         android:progress="6"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.066" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/gamma"
@@ -150,11 +164,13 @@
         android:layout_height="33dp"
         android:max="100"
         android:progress="10"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.933" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/betaLabel"
@@ -162,11 +178,11 @@
         android:layout_height="wrap_content"
         android:text="Beta"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.449" />
 
 </android.support.constraint.ConstraintLayout>
