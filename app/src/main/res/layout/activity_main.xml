@@ -6,6 +6,94 @@
     android:layout_height="match_parent"
     tools:context="brainscholar.brainscholar.MainActivity">
 
+    <TextView
+        android:id="@+id/cLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.742" />
+
+    <TextView
+        android:id="@+id/gammaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gamma"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.449" />
+
+    <SeekBar
+        android:id="@+id/c"
+        android:layout_width="162dp"
+        android:layout_height="30dp"
+        android:max="100"
+        android:progress="25"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.798"
+        app:layout_constraintHorizontal_bias="0.54" />
+
+    <SeekBar
+        android:id="@+id/v_stim"
+        android:layout_width="304dp"
+        android:layout_height="28dp"
+        android:max="50"
+        android:progress="9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.658" />
+
+    <TextView
+        android:id="@+id/v_stimLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v stim"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.609" />
+
+    <TextView
+        android:id="@+id/gkLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Potassium"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/gnaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sodium"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.048" />
+
     <Button
         android:id="@+id/calcButton"
         android:layout_width="221dp"
@@ -18,81 +106,67 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintVertical_bias="0.965" />
 
-    <EditText
-        android:id="@+id/gk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="gk = 1.1"
-        android:inputType="numberDecimal"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/c"
-        app:layout_constraintBottom_toBottomOf="@+id/calcButton"
-        app:layout_constraintHorizontal_bias="0.502"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintVertical_bias="0.337" />
-
-    <EditText
-        android:id="@+id/beta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="beta = 0.6"
-        android:inputType="numberDecimal"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/c"
-        app:layout_constraintBottom_toBottomOf="@+id/calcButton"
-        app:layout_constraintHorizontal_bias="0.502"
-        android:layout_marginBottom="0dp" />
-
-    <EditText
-        android:id="@+id/gamma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="gamma = 1.0"
-        android:inputType="numberDecimal"
-        android:textAlignment="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/c"
-        app:layout_constraintBottom_toBottomOf="@+id/calcButton"
-        app:layout_constraintHorizontal_bias="0.502"
-        android:layout_marginBottom="0dp"
-        app:layout_constraintVertical_bias="0.662" />
-
-    <EditText
+    <SeekBar
         android:id="@+id/gna"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="gna = 0.9"
-        android:inputType="numberSigned|numberDecimal"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="@+id/calcButton"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/c"
-        app:layout_constraintVertical_bias="0.165" />
-
-    <EditText
-        android:id="@+id/c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="C = 0.025"
-        android:inputType="numberSigned|numberDecimal"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        android:layout_width="249dp"
+        android:layout_height="37dp"
+        android:max="50"
+        android:progress="9"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.054" />
+
+    <SeekBar
+        android:id="@+id/gk"
+        android:layout_width="249dp"
+        android:layout_height="37dp"
+        android:max="50"
+        android:progress="11"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.244" />
+
+    <SeekBar
+        android:id="@+id/beta"
+        android:layout_width="145dp"
+        android:layout_height="33dp"
+        android:max="100"
+        android:progress="6"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.066" />
+
+    <SeekBar
+        android:id="@+id/gamma"
+        android:layout_width="145dp"
+        android:layout_height="33dp"
+        android:max="100"
+        android:progress="10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.933" />
+
+    <TextView
+        android:id="@+id/betaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beta"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.449" />
+
 </android.support.constraint.ConstraintLayout>

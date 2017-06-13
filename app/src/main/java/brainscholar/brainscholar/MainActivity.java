@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.SeekBar;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -15,112 +16,51 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText C = (EditText)findViewById(R.id.c);
-        EditText GNA = (EditText)findViewById(R.id.gna);
-        EditText GK = (EditText)findViewById(R.id.gk);
-        EditText BETA = (EditText)findViewById(R.id.beta);
-        EditText GAMMA = (EditText)findViewById(R.id.gamma);
         Button calcButton = (Button) findViewById(R.id.calcButton);
-
         calcButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View vw) {
 
-                EditText C = (EditText)findViewById(R.id.c);
-                EditText GNA = (EditText)findViewById(R.id.gna);
-                EditText GK = (EditText)findViewById(R.id.gk);
-                EditText BETA = (EditText)findViewById(R.id.beta);
-                EditText GAMMA = (EditText)findViewById(R.id.gamma);
 
-
-                double c;
-                String cCheck = C.getText().toString();
-                if (cCheck.isEmpty()) {
-                    c = 0.025;
-                }
-                else {
-                    c = Double.parseDouble(C.getText().toString());
-                }
-
-
-                double gna;
-                String gnaCheck = GNA.getText().toString();
-                if (gnaCheck.isEmpty()) {
-                    gna = 0.9;
-                }
-                else {
-                    gna = Double.parseDouble(GNA.getText().toString());
-                }
-
-                double gk;
-                String gkCheck = GK.getText().toString();
-                if (gkCheck.isEmpty()) {
-                    gk = 1.1;
-                }
-                else {
-                    gk = Double.parseDouble(GK.getText().toString());
-                }
-
-                double beta;
-                String betaCheck = BETA.getText().toString();
-                if (betaCheck.isEmpty()) {
-                    beta = 0.6;
-                }
-                else {
-                    beta = Double.parseDouble(BETA.getText().toString());
-                }
-
-                double gamma;
-                String gammaCheck = GAMMA.getText().toString();
-                if (gammaCheck.isEmpty()) {
-                    gamma = 1.0;
-                }
-                else {
-                    gamma = Double.parseDouble(GAMMA.getText().toString());
-                }
-
-                /*double v_stim = 0.9;
-                double del_t = 0.001;
-                int cl = 30;
-                int T = cl * 4;
-                Double num = T/del_t;
-
-
-                double[] f = new double[10000];
-                double[] u = new double[10000];
-                double[] v = new double[10000];
+                SeekBar C = (SeekBar) findViewById(R.id.c);
+                SeekBar GNA = (SeekBar) findViewById(R.id.gna);
+                SeekBar GK = (SeekBar) findViewById(R.id.gk);
+                SeekBar BETA = (SeekBar)findViewById(R.id.beta);
+                SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
+                SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
 
 
 
-                u[0] = -1.1;
-                v[0] = -1.2;
+                double c = C.getProgress();
+                c = c/1000;
 
-                for (int i = 0; i < 9998; i++) {
-                    double floor = i/3000;
-                    double stinum = Math.floor(floor);
-                    Double stimt = 3000 + 3000 * (stinum - 1);
-                    Integer intstim = stimt.intValue();
+                double gna = GNA.getProgress();
+                gna = gna/10;
 
-                    f[i] = v[i] * (1 - ((v[i] * v[i]) / 3));
-                    v[i + 1] = 1 / c * (gna * f[i] - gk * u[i]) * del_t + v[i];
-                    if (intstim.equals(i)) {
-                        v[i + 1] = v[i + 1] + v_stim;
-                    }
-                    u[i + 1] = (v[i] + beta - gamma * u[i]) * del_t + u[i];
-                }*/
+                double gk = GK.getProgress();
+                gk = gk/10;
 
-                int tsize = 10000;
-                /*Bundle vArray = new Bundle();
-                vArray.putDoubleArray("v", v);*/
+                double beta = BETA.getProgress();
+                beta = beta/10;
+
+                double gamma = GAMMA.getProgress();
+                gamma = gamma/10;
+
+                double v_stim = V_STIM.getProgress();
+                v_stim = v_stim/10;
+
+
+
+
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
-                /*intent.putExtras(vArray);*/
                 intent.putExtra("c", c);
                 intent.putExtra("gna", gna);
                 intent.putExtra("gk", gk);
                 intent.putExtra("beta", beta);
                 intent.putExtra("gamma", gamma);
-                intent.putExtra("tsize", tsize);
+                intent.putExtra("v_stim", v_stim);
                 startActivity(intent);
+
 
             }
         });

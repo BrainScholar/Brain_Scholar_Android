@@ -1,273 +1,108 @@
 package brainscholar.brainscholar;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
-import java.lang.String;
-import java.util.Arrays;
-
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
+import java.util.Random;
+
 public class FullscreenActivity extends AppCompatActivity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
-
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-    /**
-     * Some older devices needs a small delay between UI widget updates
-     * and a change of the status and navigation bar.
-     */
-    private static final int UI_ANIMATION_DELAY = 300;
-    private final Handler mHideHandler = new Handler();
-    private View mContentView;
-    private final Runnable mHidePart2Runnable = new Runnable() {
-        @SuppressLint("InlinedApi")
-        @Override
-        public void run() {
-            // Delayed removal of status and navigation bar
-
-            // Note that some of these constants are new as of API 16 (Jelly Bean)
-            // and API 19 (KitKat). It is safe to use them, as they are inlined
-            // at compile-time and do nothing on earlier devices.
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
-    };
-    private View mControlsView;
-    private final Runnable mShowPart2Runnable = new Runnable() {
-        @Override
-        public void run() {
-            // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
-            mControlsView.setVisibility(View.VISIBLE);
-        }
-    };
-    private boolean mVisible;
-    private final Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hide();
-        }
-    };
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
-        }
-    };
 
     private LineGraphSeries<DataPoint> series;
-    private int LastX = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_fullscreen);
-
-        mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
-
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggle();
-            }
-        });
-
-        /*double x, y;
-
         Intent intent = getIntent();
-        Bundle vArray = intent.getExtras();
-        double[] v = vArray.getDoubleArray("v");
-        System.out.println(Arrays.toString(v));
-        int tsize = intent.getIntExtra("tsize", 1200);*/
-
+        // we get graph view instance
         GraphView graph = (GraphView) findViewById(R.id.graph);
         graph.setBackgroundColor(getResources().getColor(android.R.color.white));
-
+        // data
         series = new LineGraphSeries<DataPoint>();
         graph.addSeries(series);
-
+        // customize a little bit viewport
         Viewport viewport = graph.getViewport();
+
+
         viewport.setYAxisBoundsManual(true);
+        viewport.setMinY(-5);
+        viewport.setMaxY(5);
+        viewport.setMinX(0);
+        viewport.setMaxX(10000);
         viewport.setXAxisBoundsManual(true);
-        viewport.setScalable(true);
-        series.setThickness(5);
-        series.setAnimated(true);
-
-        /*for (int i = 0; i < tsize; i++) {
-            x = i;
-            y = v[i];
-            series.appendData(new DataPoint(x, y), true, tsize);
-        }
-        graph.addSeries(series);*/
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        viewport.setScrollable(true);
+        viewport.scrollToEnd();
+        ;
     }
-
+    public int iteration = 0;
     @Override
     protected void onResume() {
         super.onResume();
+        // we're going to simulate real time with thread that append data to the graph
         new Thread(new Runnable() {
-
 
             @Override
             public void run() {
-                for (int i = 0; i < 10000; i++) {
+                // we add 100 new entries
+                double c = getIntent().getDoubleExtra("c", 0.025);
+                double gna = getIntent().getDoubleExtra("gna", 0.9);
+                double gk = getIntent().getDoubleExtra("gk", 1.1);
+                double beta = getIntent().getDoubleExtra("beta", 0.6);
+                double gamma = getIntent().getDoubleExtra("gamma", 1.0);
+                double v_stim = getIntent().getDoubleExtra("v_stim", 0.9);
+                double[] f = new double[100000];
+                double[] u = new double[100000];
+                final double[] v = new double[100000];
+
+                double del_t = 0.001;
+                int cl = 30;
+                int T = cl * 4;
+                Double num = T / del_t;
+                u[0] = -1.1;
+                v[0] = -1.2;
+
+
+                for (int i = 0; i < 99998; i++) {
+                    double floor = i / 3000;
+                    double stinum = Math.floor(floor);
+                    Double stimt = 3000 + 3000 * (stinum - 1);
+                    Integer intstim = stimt.intValue();
+                    iteration++;
+
+                    f[i] = v[i] * (1 - ((v[i] * v[i]) / 3));
+                    v[i + 1] = 1 / c * (gna * f[i] - gk * u[i]) * del_t + v[i];
+                    if (intstim.equals(i)) {
+                        v[i + 1] = v[i + 1] + v_stim;
+                    }
+                    u[i + 1] = (v[i] + beta - gamma * u[i]) * del_t + u[i];
                     runOnUiThread(new Runnable() {
+
                         @Override
                         public void run() {
-                            addEntry();
+                            series.appendData(new DataPoint(iteration, v[iteration]), true, 100000);
+                            System.out.println(v[iteration]);
                         }
                     });
-                }
-                try {
-                    Thread.sleep(6000);
-                } catch (InterruptedException e) {
 
+                    // sleep to slow down the add of entries
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        // manage error ...
+                    }
                 }
             }
-        });
+        }).start();
     }
 
-    private void addEntry() {
-        Intent intent = getIntent();
-        double c = intent.getIntExtra("c", 0);
-        double gna = intent.getIntExtra("gna", 0);
-        double gk = intent.getIntExtra("gk", 0);
-        double beta = intent.getIntExtra("beta", 0);
-        double gamma = intent.getIntExtra("gamma", 0);
-        System.out.println(c);
-        System.out.println(gna);
-        System.out.println(gk);
-        System.out.println(beta);
-        System.out.println(gamma);
-        double v_stim = 0.9;
-        double del_t = 0.001;
-        int cl = 30;
-        int T = cl * 4;
-        Double num = T/del_t;
-
-        double f;
-        double v;
-        double u;
-
-        u = -1.1;
-        v = -1.2;
-
-
-        int i = LastX;
-
-        double floor = i / 3000;
-        double stinum = Math.floor(floor);
-        Double stimt = 3000 + 3000 * (stinum - 1);
-        Integer intstim = stimt.intValue();
-
-
-        f = v * (1 - ((v * v) / 3));
-        v = 1 / c * (gna * f - gk * u) * del_t + v;
-        if (intstim.equals(i)) {
-            v = v + v_stim;
-        }
-        u = (v + beta - gamma * u) * del_t + u;
-        series.appendData(new DataPoint(LastX++, v), true, 10000);
-
-
-
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide(100);
-    }
-
-    private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
-    }
-
-    private void hide() {
-        // Hide UI first
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        mControlsView.setVisibility(View.GONE);
-        mVisible = false;
-
-        // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable);
-        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
-    }
-
-    @SuppressLint("InlinedApi")
-    private void show() {
-        // Show the system bar
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        mVisible = true;
-
-        // Schedule a runnable to display UI elements after a delay
-        mHideHandler.removeCallbacks(mHidePart2Runnable);
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
-    }
-
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
-        mHideHandler.removeCallbacks(mHideRunnable);
-        mHideHandler.postDelayed(mHideRunnable, delayMillis);
-    }
 }
+
+
