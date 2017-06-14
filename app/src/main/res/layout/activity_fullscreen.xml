@@ -8,20 +8,122 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph"
-        android:layout_width="match_parent"
-        android:layout_height="300dp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+            <Button
+                android:id="@+id/calcButton"
+                android:layout_width="221dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:backgroundTint="@android:color/background_light"
+                android:elevation="0dp"
+                android:text="Calculate"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/gnaLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="Sodium"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:typeface="normal" />
+            <SeekBar
+                android:id="@+id/gna"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="50"
+                android:progress="9"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+            <TextView
+                android:id="@+id/gkLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="Potassium"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <SeekBar
+                android:id="@+id/gk"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="50"
+                android:progress="11"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+            <TextView
+                android:id="@+id/betaLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="Beta"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <SeekBar
+                android:id="@+id/beta"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="100"
+                android:progress="6"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+            <TextView
+                android:id="@+id/gammaLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="Gamma"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <SeekBar
+                android:id="@+id/gamma"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="100"
+                android:progress="10"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+            <TextView
+                android:id="@+id/v_stimLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="V Stim"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <SeekBar
+                android:id="@+id/v_stim"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="50"
+                android:progress="9"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+            <TextView
+                android:id="@+id/cLabel"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:text="C"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"/>
+            <SeekBar
+                android:id="@+id/c"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:max="100"
+                android:progress="25"
+                android:progressTint="@android:color/black"
+                android:thumbTint="@android:color/black"/>
+        </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>
