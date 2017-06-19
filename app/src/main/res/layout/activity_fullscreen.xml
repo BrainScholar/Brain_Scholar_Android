@@ -22,7 +22,7 @@
                 android:layout_height="300dp" />
 
             <Button
-                android:id="@+id/calcButton"
+                android:id="@+id/calcButton2"
                 android:layout_width="221dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
@@ -84,6 +84,7 @@
                 android:text="Gamma"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"/>
+
             <SeekBar
                 android:id="@+id/gamma"
                 android:layout_width="match_parent"
@@ -91,7 +92,8 @@
                 android:max="100"
                 android:progress="10"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
+
             <TextView
                 android:id="@+id/v_stimLabel"
                 android:layout_width="match_parent"
