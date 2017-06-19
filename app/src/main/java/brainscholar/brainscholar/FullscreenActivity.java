@@ -85,11 +85,17 @@ public class FullscreenActivity extends AppCompatActivity {
                         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
                         double c = C.getProgress();
+                        c = c/1000;
                         double gna = GNA.getProgress();
+                        gna = gna/10;
                         double gk = GK.getProgress();
+                        gk = gk/10;
                         double beta = BETA.getProgress();
+                        beta = beta/10;
                         double gamma = GAMMA.getProgress();
+                        gamma = gamma/10;
                         double v_stim = V_STIM.getProgress();
+                        v_stim = v_stim/10;
 
                         System.out.println(c);
                         System.out.println(gna);
