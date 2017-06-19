@@ -10,4 +10,13 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="graph_speed_prompt">Graph Speed</string>
+
+    <string-array name="speed_arrays">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 </resources>

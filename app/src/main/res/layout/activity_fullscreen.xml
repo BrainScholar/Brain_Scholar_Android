@@ -22,7 +22,7 @@
                 android:layout_height="300dp" />
 
             <Button
-                android:id="@+id/calcButton"
+                android:id="@+id/calcButton2"
                 android:layout_width="221dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center_horizontal"
