@@ -36,13 +36,14 @@ public class FullscreenActivity extends AppCompatActivity {
         // data
         series = new LineGraphSeries<DataPoint>();
         graph.addSeries(series);
+        graph.clearSecondScale();
         // customize viewport
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
                     // show custom x values
-                    return super.formatLabel(value/10, isValueX);
+                    return super.formatLabel(value/1000, isValueX);
                 } else {
                     // show custom y values
                     return super.formatLabel(value, isValueX);
@@ -52,16 +53,15 @@ public class FullscreenActivity extends AppCompatActivity {
         Viewport viewport = graph.getViewport();
 
 
-        viewport.setYAxisBoundsManual(true);
         viewport.setMinY(-5);
         viewport.setMaxY(5);
         viewport.setMinX(0);
-        viewport.setMaxX(10000);
+        viewport.setMaxX(6000);
         viewport.setXAxisBoundsManual(true);
         viewport.setYAxisBoundsManual(true);
-        viewport.setScrollable(true);
+        //viewport.setScrollable(true);
         viewport.setScalable(true);
-        viewport.scrollToEnd();
+        //viewport.scrollToEnd();
     }
 
     public int iteration = 0;
@@ -140,11 +140,11 @@ public class FullscreenActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             series.appendData(new DataPoint(iteration, v[iteration % 6000]), true, 10000);
+
                         }
                     });
 
                     int speed = getIntent().getIntExtra("speed", 2);
-                    System.out.println(speed);
                     // sleep to slow down the add of entries
                     try {
                         Thread.sleep(speed);

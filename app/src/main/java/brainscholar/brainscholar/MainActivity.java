@@ -57,9 +57,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 double v_stim = V_STIM.getProgress();
                 v_stim = v_stim/10;
-                
 
-                System.out.println(speed);
 
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
                 intent.putExtra("speed", speed);
