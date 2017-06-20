@@ -43,7 +43,7 @@
                 android:id="@+id/gna"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="50"
+                android:max="100"
                 android:progress="9"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black"/>
@@ -58,7 +58,7 @@
                 android:id="@+id/gk"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="50"
+                android:max="100"
                 android:progress="11"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black"/>
@@ -73,7 +73,7 @@
                 android:id="@+id/beta"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="10"
                 android:progress="6"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black"/>
@@ -88,7 +88,7 @@
                 android:id="@+id/gamma"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="20"
                 android:progress="10"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black"/>
@@ -118,7 +118,7 @@
                 android:id="@+id/c"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="50"
                 android:progress="25"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black"/>
