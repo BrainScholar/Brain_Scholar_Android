@@ -13,10 +13,10 @@
     <string name="graph_speed_prompt">Graph Speed</string>
 
     <string-array name="speed_arrays">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
+        <item>Very Fast</item>
+        <item>Fast</item>
+        <item>Moderate</item>
+        <item>Slow</item>
+        <item>Very Slow</item>
     </string-array>
 </resources>
