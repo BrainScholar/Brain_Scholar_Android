@@ -11,9 +11,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="vertical">
 
             <com.jjoe64.graphview.GraphView
@@ -32,67 +34,100 @@
                 android:textAlignment="center" />
 
             <TextView
+                android:id="@+id/textGNAprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
                 android:id="@+id/gnaLabel"
                 android:layout_width="match_parent"
-                android:layout_height="15dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:text="Sodium"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:typeface="normal" />
+
             <SeekBar
                 android:id="@+id/gna"
+                style="@android:style/Widget.Material.SeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="50"
+                android:max="100"
                 android:progress="9"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textGKprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/gkLabel"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:text="Potassium"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
+
             <SeekBar
                 android:id="@+id/gk"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="50"
+                android:max="100"
                 android:progress="11"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textBETAprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/betaLabel"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:text="Beta"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
+
             <SeekBar
                 android:id="@+id/beta"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="10"
                 android:progress="6"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textGAMMAprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/gammaLabel"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:text="Gamma"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
 
             <SeekBar
                 android:id="@+id/gamma"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="20"
                 android:progress="10"
                 android:progressTint="@android:color/black"
                 android:thumbTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textV_STIMprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/v_stimLabel"
@@ -100,7 +135,8 @@
                 android:layout_height="15dp"
                 android:text="V Stim"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
+
             <SeekBar
                 android:id="@+id/v_stim"
                 android:layout_width="match_parent"
@@ -108,22 +144,29 @@
                 android:max="50"
                 android:progress="9"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textCprogress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <TextView
                 android:id="@+id/cLabel"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:text="C"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
+
             <SeekBar
                 android:id="@+id/c"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:max="100"
+                android:max="50"
                 android:progress="25"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black"/>
+                android:thumbTint="@android:color/black" />
         </LinearLayout>
 
     </ScrollView>
