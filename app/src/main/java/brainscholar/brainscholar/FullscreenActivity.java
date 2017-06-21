@@ -43,7 +43,7 @@ public class FullscreenActivity extends AppCompatActivity {
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
                     // show custom x values
-                    return super.formatLabel(value/1000, isValueX);
+                    return super.formatLabel(value/10000.0, isValueX);
                 } else {
                     // show custom y values
                     return super.formatLabel(value, isValueX);
