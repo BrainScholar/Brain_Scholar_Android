@@ -17,8 +17,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class FullscreenActivity extends AppCompatActivity {
 
+    //Declare these variables out here so that they are accessible within inner classes
     private LineGraphSeries<DataPoint> series;
-
     public int iteration = 0;
     public static double c;
     public static double gna;
@@ -26,53 +26,61 @@ public class FullscreenActivity extends AppCompatActivity {
     public static double beta;
     public static double gamma;
     public static double v_stim;
+    //***********************************//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fullscreen);
-        Intent intent = getIntent();
-        // we get graph view instance
+
+        //**********************GRAPHVIEW*********************//
+        //Declare GraphView and assign it "graph" from activity_fullscreen.xml
         GraphView graph = (GraphView) findViewById(R.id.graph);
         graph.setBackgroundColor(getResources().getColor(android.R.color.white));
-        // data
+        //Assign the LineGraphSeries to the graph
         series = new LineGraphSeries<DataPoint>();
         graph.addSeries(series);
+        //Clear old values
         graph.clearSecondScale();
-        // customize viewport
+        //Customize the viewport
+
+        //*****LABEL FORMATTER*****//
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
-                    // show custom x values
+                    //Show custom x values
                     return super.formatLabel(value/100.0, isValueX);
                 } else {
-                    // show custom y values
+                    //Show custom y values
                     return super.formatLabel(value, isValueX);
                 }
             }
         });
+        //**************************//
         Viewport viewport = graph.getViewport();
-
-
-        viewport.setMinY(-5);
-        viewport.setMaxY(5);
-        viewport.setMinX(0);
-        viewport.setMaxX(6000);
-        viewport.setXAxisBoundsManual(true);
-        viewport.setYAxisBoundsManual(true);
-        //viewport.setScrollable(true);
+        viewport.setMinY(-5); //Set minimum Y value
+        viewport.setMaxY(5); //Set maximum Y value
+        viewport.setMinX(0); //Set minimum X value
+        viewport.setMaxX(6000); //Set maximum X values to be seen at one time
+                                //(from actual x data points created NOT BASED ON VISIBLE X VALUES IN LABEL)
+        viewport.setXAxisBoundsManual(true); //Set X viewport range static
+        viewport.setYAxisBoundsManual(true); //Set Y viewport rang static
         viewport.setScalable(true);
-        //viewport.scrollToEnd();
+        //*********************************************************//
 
+        //***********DECLARE SEEKBARS***************//
         SeekBar C = (SeekBar) findViewById(R.id.c);
         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
         SeekBar GK = (SeekBar) findViewById(R.id.gk);
         SeekBar BETA = (SeekBar)findViewById(R.id.beta);
         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+        //******************************************//
 
 
+
+        //*************SODIUM SEEKBAR ACTION***************//
         GNA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGNAprogress);
@@ -94,7 +102,12 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //*************POTASSIUM SEEKBAR ACTION**************//
         GK.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGKprogress);
@@ -116,7 +129,12 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //***************BETA SEEKBAR ACTION*****************//
         BETA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textBETAprogress);
@@ -138,7 +156,12 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //**************GAMMA SEEKBAR ACTION***************//
         GAMMA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGAMMAprogress);
@@ -160,7 +183,12 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //************V_STIM SEEKBAR ACTION*************//
         V_STIM.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textV_STIMprogress);
@@ -182,7 +210,12 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //*************C SEEKBAR ACTION***************//
         C.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textCprogress);
@@ -204,38 +237,63 @@ public class FullscreenActivity extends AppCompatActivity {
                     }
                 }
         );
+        //********************************************//
+
+
     }
 
+
+    //**************************CALCULATE AND GRAPH***************************//
     @Override
     protected void onResume() {
         super.onResume();
-        // we're going to simulate real time with thread that append data to the graph
+        //We're going to simulate real time with thread that append data to the graph
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-                // we add new entries
+                //***************DECLARE VARIABLES***************//
+                //Get entries from Intent established in MainActivity
+                //Assign them to variables declared above
+                //----------------------------("String Key", Default Value [in case string key points to NULL])//
                 c = getIntent().getDoubleExtra("c", 0.025);
                 gna = getIntent().getDoubleExtra("gna", 0.9);
                 gk = getIntent().getDoubleExtra("gk", 1.1);
                 beta = getIntent().getDoubleExtra("beta", 0.6);
                 gamma = getIntent().getDoubleExtra("gamma", 1.0);
                 v_stim = getIntent().getDoubleExtra("v_stim", 0.9);
+
+
+                //************CALC BUTTON ACTION******************//
+                //Declare Button and assign it "calcButton2' from activity_fullscreen.xml
                 Button calcButton2 = (Button) findViewById(R.id.calcButton2);
+                //Listen for click
                 calcButton2.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View vw) {
+                        /*Changes the values of the constant variables as
+                        /passed by intent from MainActivity to new values
+                        /based on local seekbar progress on click of the
+                        /"CALCULATE" button. Thus, allowing the user to
+                        /use the seekbars to change the values and update
+                        /the graph in real time on each press of the button*/
 
-
+                        //***********DECLARE SEEKBARS***************//
                         SeekBar C = (SeekBar) findViewById(R.id.c);
                         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
                         SeekBar GK = (SeekBar) findViewById(R.id.gk);
                         SeekBar BETA = (SeekBar)findViewById(R.id.beta);
                         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+                        //******************************************//
 
-                        c = C.getProgress();
-                        c = c/1000;
+                        //*****CONVERT SEEKBAR PROGRESS*****//
+
+                        //Get value from Seekbar (whole numbers 0 to [whatever max is determined in activity_main.xml])
+                        //Divide by what is needed to get the appropriate decimal
+
+                        c = C.getProgress(); //Get progress from C seekbar declared and assigned above
+                        c = c/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
 
                         gna = GNA.getProgress();
                         gna = gna/10;
@@ -251,11 +309,16 @@ public class FullscreenActivity extends AppCompatActivity {
 
                         v_stim = V_STIM.getProgress();
                         v_stim = v_stim/10;
+                        //***********************************//
 
                     }
                 });
+
+                //Declare array sizes
                 double[] f = new double[10000];
                 double[] u = new double[10000];
+                //"v" array is declared final to access within class that appends graph data
+                //"v" array is all Y values for graph
                 final double[] v = new double[10000];
                 double del_t = 0.001;
                 int cl = 30;
@@ -263,13 +326,17 @@ public class FullscreenActivity extends AppCompatActivity {
                 Double num = T / del_t;
                 u[0] = -1.1;
                 v[0] = -1.2;
+                //************************************************//
 
 
+
+                //********************CALCULATE*******************//
                 for (int i = 0; i < 10000; i=(i+1)%6000) {
                     double floor = i / 3000;
                     double stinum = Math.floor(floor);
                     Double stimt = 3000 + 3000 * (stinum - 1);
                     Integer intstim = stimt.intValue();
+                    //increment constantly to reflect the onward march of time
                     iteration++;
 
                     f[i%6000] = v[i%6000] * (1 - ((v[i%6000] * v[i%6000]) / 3));
@@ -278,25 +345,40 @@ public class FullscreenActivity extends AppCompatActivity {
                         v[(i + 1)%6000] = v[(i + 1)%6000] + v_stim;
                     }
                     u[(i + 1)%6000] = (v[i%6000] + beta - gamma * u[i%6000]) * del_t + u[i%6000];
-                    runOnUiThread(new Runnable() {
+                //************************************************//
 
+
+                    //*****APPEND DATA*****//
+                    runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            //Add a new data point (x, y)
+                            //Mod used to overwrite data in "v" array and continue forever
                             series.appendData(new DataPoint(iteration, v[iteration%6000]), true, 10000);
-
                         }
                     });
+                    //*********************//
 
-                    // sleep to slow down the add of entries
+
+                    //**********GRAPH SPEED**********//
+
+                    //Control speed of graphing by controling how long the thread sleeps in between
                     try {
-                        Thread.sleep(2);
+                        //Since we already let the user determine the speed in MainActivity
+                        //and passed it to this activity via intent, let's call it up and
+                        //speed up or slow down the graph accordingly
+                        int speed = getIntent().getIntExtra("speed", 1);
+                        Thread.sleep(speed);
                     } catch (InterruptedException e) {
-                        // manage error ...
+                        //Manage error ...
                     }
+                    //********************************//
                 }
             }
-        }).start();
+        })/*Start Graphing*/.start();
+
     }
+    //**************************************************************************//
 
 }
 

@@ -13,20 +13,26 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-
+    //Declare speed here so that it is accessible to inner classes.
     private int speed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //***********DECLARE SEEKBARS***************//
         SeekBar C = (SeekBar) findViewById(R.id.c);
         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
         SeekBar GK = (SeekBar) findViewById(R.id.gk);
-        SeekBar BETA = (SeekBar)findViewById(R.id.beta);
+        SeekBar BETA = (SeekBar) findViewById(R.id.beta);
         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+        //******************************************//
 
+
+
+
+        //*************SODIUM SEEKBAR ACTION***************//
         GNA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGNAprogress);
@@ -48,7 +54,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+
+        //*************POTASSIUM SEEKBAR ACTION**************//
         GK.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGKprogress);
@@ -70,7 +82,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //***************BETA SEEKBAR ACTION*****************//
         BETA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textBETAprogress);
@@ -92,7 +109,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //**************GAMMA SEEKBAR ACTION***************//
         GAMMA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGAMMAprogess);
@@ -114,7 +136,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+
+        //************V_STIM SEEKBAR ACTION*************//
         V_STIM.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textV_STIMprogress);
@@ -136,7 +162,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+
+
+        //*************C SEEKBAR ACTION***************//
         C.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     TextView text_SeekBar = (TextView) findViewById(R.id.textCprogress);
@@ -158,26 +189,48 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
         );
+        //********************************************//
 
+
+        //*****DROPDOWN FOR GRAPH SPEED SELECTION*****//
+        //Declare spinner and assign it to XML ID
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        /*Declare an ArrayAdapter to convert the dropdown options into an array.
+        /*Then convert the string array in res/values/strings.xml to an AdapterArray for the dropdown*/
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.speed_arrays, android.R.layout.simple_spinner_item);
+        //Set the dropdown view
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Assign the AdapterArray to it
         spinner.setAdapter(adapter);
+        //Set the Item selected Listener
         spinner.setOnItemSelectedListener(MainActivity.this);
+        //********************************************//
 
+
+        //***************BUTTON ACTION****************//
+        //Declare button and assign it to calcButton in activity_main.xml
         Button calcButton = (Button) findViewById(R.id.calcButton);
+        //On Click do...
         calcButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View vw) {
+
+                //*****DECLARE SEEKBARS*****//
                 SeekBar C = (SeekBar) findViewById(R.id.c);
                 SeekBar GNA = (SeekBar) findViewById(R.id.gna);
                 SeekBar GK = (SeekBar) findViewById(R.id.gk);
                 SeekBar BETA = (SeekBar)findViewById(R.id.beta);
                 SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                 SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+                //**************************//
 
-                double c = C.getProgress();
-                c = c/1000;
+                //*****CONVERT SEEKBAR PROGRESS*****//
+
+                //Get value from Seekbar (whole numbers 0 to [whatever max is determined in activity_main.xml])
+                //Divide by what is needed to get the appropriate decimal
+
+                double c = C.getProgress(); //Get progress from C seekbar declared and assigned above
+                c = c/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
 
                 double gna = GNA.getProgress();
                 gna = gna/10;
@@ -193,9 +246,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 double v_stim = V_STIM.getProgress();
                 v_stim = v_stim/10;
+                //********************//
 
-
+                //*****PASS DATA TO NEXT ACTIVITY*****//
+                //Declare an intent to direct where the data is coming from and where it is going
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
+                //Move necessary variables to next activity with a string key to call on and their value
                 intent.putExtra("speed", speed);
                 intent.putExtra("c", c);
                 intent.putExtra("gna", gna);
@@ -203,38 +259,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent.putExtra("beta", beta);
                 intent.putExtra("gamma", gamma);
                 intent.putExtra("v_stim", v_stim);
+
+
+                //*****START NEXT ACTIVITY*****//
                 startActivity(intent);
+                //*****************************//
 
 
             }
         });
     }
+
+    //From [[spinner.setOnItemSelectedListener(MainActivity.this);]]
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //A switch case based on AdapterArray position in the dropdown (top to bottom)
         switch (position) {
-            case 0:
+            case 0: //If "Very Fast" is selected...
                 speed = 1;
                 break;
-            case 1:
+            case 1: //If "Fast" is selected...
                 speed = 2;
                 break;
-            case 2:
+            case 2: //If "Moderate" is selected...
                 speed = 3;
                 break;
-            case 3:
+            case 3: //If "Slow" is selected...
                 speed = 4;
                 break;
-            case 4:
+            case 4: //If "Very Slow" is selected...
                 speed = 5;
                 break;
 
         }
-        System.out.println();
+
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        speed = 2;
+        speed = 2; //If nothing is selected...
 
     }
 
