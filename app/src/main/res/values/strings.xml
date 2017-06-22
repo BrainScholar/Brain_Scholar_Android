@@ -19,4 +19,13 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+    <string name="graph_speed_prompt">Graph Speed</string>
+
+    <string-array name="speed_arrays">
+        <item>Very Fast</item>
+        <item>Fast</item>
+        <item>Moderate</item>
+        <item>Slow</item>
+        <item>Very Slow</item>
+    </string-array>
 </resources>

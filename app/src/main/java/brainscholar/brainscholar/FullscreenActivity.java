@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import android.view.View;
+import android.widget.Button;
+import android.widget.SeekBar;
+
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
@@ -37,18 +42,33 @@ public class FullscreenActivity extends AppCompatActivity {
         // data
         series = new LineGraphSeries<DataPoint>();
         graph.addSeries(series);
-        // customize a little bit viewport
+        graph.clearSecondScale();
+        // customize viewport
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show custom x values
+                    return super.formatLabel(value/10000.0, isValueX);
+                } else {
+                    // show custom y values
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+        });
         Viewport viewport = graph.getViewport();
 
 
-        viewport.setYAxisBoundsManual(true);
         viewport.setMinY(-5);
         viewport.setMaxY(5);
         viewport.setMinX(0);
-        viewport.setMaxX(10000);
+        viewport.setMaxX(6000);
         viewport.setXAxisBoundsManual(true);
-        viewport.setScrollable(true);
-        viewport.scrollToEnd();
+        viewport.setYAxisBoundsManual(true);
+        //viewport.setScrollable(true);
+        viewport.setScalable(true);
+        //viewport.scrollToEnd();
+    }
 
         SeekBar C = (SeekBar) findViewById(R.id.c);
         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
@@ -267,7 +287,7 @@ public class FullscreenActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             series.appendData(new DataPoint(iteration, v[iteration%6000]), true, 10000);
-                            //System.out.println(v[iteration]);
+
                         }
                     });
 
@@ -281,8 +301,6 @@ public class FullscreenActivity extends AppCompatActivity {
             }
         }).start();
     }
-
-
 
 }
 

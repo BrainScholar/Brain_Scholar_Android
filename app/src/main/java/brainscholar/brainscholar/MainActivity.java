@@ -5,12 +5,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Spinner;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
+    private int speed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +160,12 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(MainActivity.this, R.array.speed_arrays, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(MainActivity.this);
+
         Button calcButton = (Button) findViewById(R.id.calcButton);
         calcButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -185,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(MainActivity.this, FullscreenActivity.class);
+                intent.putExtra("speed", speed);
                 intent.putExtra("c", c);
                 intent.putExtra("gna", gna);
                 intent.putExtra("gk", gk);
@@ -196,6 +209,34 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                speed = 1;
+                break;
+            case 1:
+                speed = 2;
+                break;
+            case 2:
+                speed = 3;
+                break;
+            case 3:
+                speed = 4;
+                break;
+            case 4:
+                speed = 5;
+                break;
+
+        }
+        System.out.println();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        speed = 2;
+
     }
 
 
