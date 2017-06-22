@@ -2,16 +2,12 @@ package brainscholar.brainscholar;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import android.view.View;
-import android.widget.Button;
-import android.widget.SeekBar;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
@@ -49,7 +45,7 @@ public class FullscreenActivity extends AppCompatActivity {
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
                     // show custom x values
-                    return super.formatLabel(value/10000.0, isValueX);
+                    return super.formatLabel(value/100.0, isValueX);
                 } else {
                     // show custom y values
                     return super.formatLabel(value, isValueX);
@@ -68,7 +64,6 @@ public class FullscreenActivity extends AppCompatActivity {
         //viewport.setScrollable(true);
         viewport.setScalable(true);
         //viewport.scrollToEnd();
-    }
 
         SeekBar C = (SeekBar) findViewById(R.id.c);
         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
@@ -76,6 +71,7 @@ public class FullscreenActivity extends AppCompatActivity {
         SeekBar BETA = (SeekBar)findViewById(R.id.beta);
         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+
 
         GNA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
