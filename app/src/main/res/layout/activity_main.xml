@@ -19,7 +19,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.627" />
 
     <TextView
         android:id="@+id/gammaLabel"
@@ -32,22 +32,22 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.354" />
 
     <SeekBar
         android:id="@+id/c"
         android:layout_width="162dp"
         android:layout_height="30dp"
-        android:max="100"
+        android:max="50"
         android:progress="25"
         android:progressTint="@android:color/black"
         android:thumbTint="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798" />
+        app:layout_constraintVertical_bias="0.679" />
 
     <SeekBar
         android:id="@+id/v_stim"
@@ -61,7 +61,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.548" />
 
     <TextView
         android:id="@+id/v_stimLabel"
@@ -75,7 +75,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintHorizontal_bias="0.501" />
 
     <TextView
         android:id="@+id/gkLabel"
@@ -87,7 +87,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.163" />
 
     <TextView
         android:id="@+id/gnaLabel"
@@ -113,13 +113,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.965" />
+        app:layout_constraintVertical_bias="0.984" />
 
     <SeekBar
         android:id="@+id/gna"
         android:layout_width="249dp"
         android:layout_height="37dp"
-        android:max="50"
+        android:max="100"
         android:progress="9"
         android:progressBackgroundTint="@android:color/black"
         android:progressTint="@android:color/black"
@@ -129,13 +129,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <SeekBar
         android:id="@+id/gk"
         android:layout_width="249dp"
         android:layout_height="37dp"
-        android:max="50"
+        android:max="100"
         android:progress="11"
         android:progressTint="@android:color/black"
         android:thumbTint="@android:color/black"
@@ -144,13 +144,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.206" />
 
     <SeekBar
         android:id="@+id/beta"
         android:layout_width="145dp"
         android:layout_height="33dp"
-        android:max="100"
+        android:max="10"
         android:progress="6"
         android:progressTint="@android:color/black"
         android:thumbTint="@android:color/black"
@@ -158,13 +158,14 @@
         app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401" />
 
     <SeekBar
         android:id="@+id/gamma"
         android:layout_width="145dp"
         android:layout_height="33dp"
-        android:max="100"
+        android:max="20"
         android:progress="10"
         android:progressTint="@android:color/black"
         android:thumbTint="@android:color/black"
@@ -172,7 +173,8 @@
         app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.401" />
 
     <TextView
         android:id="@+id/betaLabel"
@@ -185,6 +187,88 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.354" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="249dp"
+        android:layout_height="35dp"
+        android:dropDownWidth="wrap_content"
+        android:prompt="@string/graph_speed_prompt"
+        android:entries="@array/speed_arrays"
+        android:spinnerMode="dropdown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.859" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Graph Speed"
+        android:textAlignment="center"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.777" />
+
+    <TextView
+        android:id="@+id/textGNAprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/gna"
+        tools:layout_editor_absoluteX="78dp" />
+
+    <TextView
+        android:id="@+id/textGKprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/gk"
+        tools:layout_editor_absoluteX="68dp" />
+
+    <TextView
+        android:id="@+id/textBETAprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/betaLabel"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/textGAMMAprogess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="213dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/gamma" />
+
+    <TextView
+        android:id="@+id/textV_STIMprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/v_stimLabel"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <TextView
+        android:id="@+id/textCprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/c"
+        tools:layout_editor_absoluteX="120dp" />
 
 </android.support.constraint.ConstraintLayout>
