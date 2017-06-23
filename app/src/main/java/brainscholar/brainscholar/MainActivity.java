@@ -15,12 +15,22 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     //Declare speed here so that it is accessible to inner classes.
     private int speed;
+    public int iteration = 0;
+    public double c;
+    public double gna;
+    public double gk;
+    public double beta;
+    public double gamma;
+    public double v_stim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //***********DECLARE SEEKBARS***************//
+        /* These SeekBar variables are used to with Listener actions
+        to keep track of progress and display value of the active SeekBar thumb
+         */
         SeekBar C = (SeekBar) findViewById(R.id.c);
         SeekBar GNA = (SeekBar) findViewById(R.id.gna);
         SeekBar GK = (SeekBar) findViewById(R.id.gk);
@@ -35,20 +45,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //*************SODIUM SEEKBAR ACTION***************//
         GNA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGNAprogress);
-                    @Override
+                    // When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/10.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -63,20 +80,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //*************POTASSIUM SEEKBAR ACTION**************//
         GK.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGKprogress);
-                    @Override
+                    /// When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/10.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -90,20 +114,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //***************BETA SEEKBAR ACTION*****************//
         BETA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textBETAprogress);
-                    @Override
+                    // When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/10.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -117,20 +148,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //**************GAMMA SEEKBAR ACTION***************//
         GAMMA.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textGAMMAprogess);
-                    @Override
+                    // When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/10.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -143,20 +181,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //************V_STIM SEEKBAR ACTION*************//
         V_STIM.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textV_STIMprogress);
-                    @Override
+                    // When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/10.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -170,20 +215,27 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         //*************C SEEKBAR ACTION***************//
         C.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
+                    //Declare a TextView variable that will hover over
+                    // the SeekBar thumb and display its progress value
                     TextView text_SeekBar = (TextView) findViewById(R.id.textCprogress);
-                    @Override
+                    // When the SeekBar thumb is on progress display its value
+                    // on TextView object that hovers above the SeekBar thumb
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/1000.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
 
-                    @Override
+                    // During the event when mouse icon is pressed over the SeekBar thumb,
+                    // activate the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.VISIBLE);
                     }
 
-                    @Override
+                    // During the event when mouse icon is released from the SeekBar thumb,
+                    // hide the TextView so the progress value can be displayed
+                    // as the thumb is moved
                     public void onStopTrackingTouch(SeekBar seekBar) {
                         text_SeekBar.setVisibility(View.GONE);
                     }
@@ -229,22 +281,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 //Get value from Seekbar (whole numbers 0 to [whatever max is determined in activity_main.xml])
                 //Divide by what is needed to get the appropriate decimal
 
-                double c = C.getProgress(); //Get progress from C seekbar declared and assigned above
+                c = C.getProgress(); //Get progress from C seekbar declared and assigned above
                 c = c/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
 
-                double gna = GNA.getProgress();
+                gna = GNA.getProgress();
                 gna = gna/10;
 
-                double gk = GK.getProgress();
+                gk = GK.getProgress();
                 gk = gk/10;
 
-                double beta = BETA.getProgress();
+                beta = BETA.getProgress();
                 beta = beta/10;
 
-                double gamma = GAMMA.getProgress();
+                gamma = GAMMA.getProgress();
                 gamma = gamma/10;
 
-                double v_stim = V_STIM.getProgress();
+                v_stim = V_STIM.getProgress();
                 v_stim = v_stim/10;
                 //********************//
 
