@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         SeekBar BETA = (SeekBar) findViewById(R.id.beta);
         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+        SeekBar STIMRATE = (SeekBar) findViewById(R.id.stimRate);
         //******************************************//
 
 
@@ -174,6 +175,32 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                        text_SeekBar.setText("" + (progress + 1)/1000.0);
+                        text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        text_SeekBar.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        text_SeekBar.setVisibility(View.GONE);
+                    }
+                }
+        );
+        //********************************************//
+
+
+
+        //************STIM RATE SEEKBAR ACTION*************//
+        STIMRATE.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    TextView text_SeekBar = (TextView) findViewById(R.id.textSTIMRATEprogress);
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/1000.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
@@ -222,6 +249,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 SeekBar BETA = (SeekBar)findViewById(R.id.beta);
                 SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                 SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+                SeekBar STIMRATE = (SeekBar) findViewById(R.id.stimRate);
                 //**************************//
 
                 //*****CONVERT SEEKBAR PROGRESS*****//
@@ -230,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 //Divide by what is needed to get the appropriate decimal
 
                 double c = C.getProgress(); //Get progress from C seekbar declared and assigned above
-                c = c/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
+                c = (c + 1)/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
 
                 double gna = GNA.getProgress();
                 gna = gna/10;
@@ -246,6 +274,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                 double v_stim = V_STIM.getProgress();
                 v_stim = v_stim/10;
+
+                int stimRate = STIMRATE.getProgress();
                 //********************//
 
                 //*****PASS DATA TO NEXT ACTIVITY*****//
@@ -259,6 +289,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 intent.putExtra("beta", beta);
                 intent.putExtra("gamma", gamma);
                 intent.putExtra("v_stim", v_stim);
+                intent.putExtra("stimRate", stimRate);
 
 
                 //*****START NEXT ACTIVITY*****//

@@ -51,7 +51,7 @@
 
     <SeekBar
         android:id="@+id/v_stim"
-        android:layout_width="304dp"
+        android:layout_width="145dp"
         android:layout_height="28dp"
         android:max="50"
         android:progress="9"
@@ -59,6 +59,22 @@
         android:thumbTint="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.548" />
+
+    <SeekBar
+        android:id="@+id/stimRate"
+        android:layout_width="145dp"
+        android:layout_height="28dp"
+        android:max="10000"
+        android:progress="3000"
+        android:progressTint="@android:color/black"
+        android:thumbTint="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.548" />
@@ -75,7 +91,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.501" />
+        app:layout_constraintHorizontal_bias="0.191" />
+
+    <TextView
+        android:id="@+id/stimRateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stim Rate"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.8" />
 
     <TextView
         android:id="@+id/gkLabel"
@@ -261,6 +289,16 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/v_stimLabel"
         tools:layout_editor_absoluteX="40dp" />
+
+    <TextView
+        android:id="@+id/textSTIMRATEprogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/stimRateLabel"
+        tools:layout_editor_absoluteX="213dp" />
+
 
     <TextView
         android:id="@+id/textCprogress"

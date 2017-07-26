@@ -26,6 +26,7 @@ public class FullscreenActivity extends AppCompatActivity {
     public static double beta;
     public static double gamma;
     public static double v_stim;
+    public static int stimRate;
     //***********************************//
 
     @Override
@@ -76,6 +77,7 @@ public class FullscreenActivity extends AppCompatActivity {
         SeekBar BETA = (SeekBar)findViewById(R.id.beta);
         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+        SeekBar STIMRATE = (SeekBar) findViewById(R.id.stimRate);
         //******************************************//
 
 
@@ -222,6 +224,32 @@ public class FullscreenActivity extends AppCompatActivity {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                        text_SeekBar.setText("" + (progress + 1)/1000.0);
+                        text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+                        text_SeekBar.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        text_SeekBar.setVisibility(View.GONE);
+                    }
+                }
+        );
+        //********************************************//
+
+
+
+        //************STIM RATE SEEKBAR ACTION*************//
+        STIMRATE.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    TextView text_SeekBar = (TextView) findViewById(R.id.textSTIMRATEprogress);
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                         text_SeekBar.setText("" + progress/1000.0);
                         text_SeekBar.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
                     }
@@ -262,6 +290,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 beta = getIntent().getDoubleExtra("beta", 0.6);
                 gamma = getIntent().getDoubleExtra("gamma", 1.0);
                 v_stim = getIntent().getDoubleExtra("v_stim", 0.9);
+                stimRate = getIntent().getIntExtra("stimRate", 3000);
 
 
                 //************CALC BUTTON ACTION******************//
@@ -285,6 +314,7 @@ public class FullscreenActivity extends AppCompatActivity {
                         SeekBar BETA = (SeekBar)findViewById(R.id.beta);
                         SeekBar GAMMA = (SeekBar) findViewById(R.id.gamma);
                         SeekBar V_STIM = (SeekBar) findViewById(R.id.v_stim);
+                        SeekBar STIMRATE = (SeekBar) findViewById(R.id.stimRate);
                         //******************************************//
 
                         //*****CONVERT SEEKBAR PROGRESS*****//
@@ -293,7 +323,7 @@ public class FullscreenActivity extends AppCompatActivity {
                         //Divide by what is needed to get the appropriate decimal
 
                         c = C.getProgress(); //Get progress from C seekbar declared and assigned above
-                        c = c/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
+                        c = (c + 1)/1000; //Convert to decimal (ex. if Seekbar actual progress is 25, this makes it 0.025)
 
                         gna = GNA.getProgress();
                         gna = gna/10;
@@ -309,6 +339,8 @@ public class FullscreenActivity extends AppCompatActivity {
 
                         v_stim = V_STIM.getProgress();
                         v_stim = v_stim/10;
+
+                        stimRate = STIMRATE.getProgress();
                         //***********************************//
 
                     }
@@ -341,7 +373,7 @@ public class FullscreenActivity extends AppCompatActivity {
 
                     f[i%6000] = v[i%6000] * (1 - ((v[i%6000] * v[i%6000]) / 3));
                     v[(i + 1)%6000] = 1 / c * (gna * f[i%6000] - gk * u[i%6000]) * del_t + v[i%6000];
-                    if (intstim.equals(i)) {
+                    if (i%stimRate == 0) {
                         v[(i + 1)%6000] = v[(i + 1)%6000] + v_stim;
                     }
                     u[(i + 1)%6000] = (v[i%6000] + beta - gamma * u[i%6000]) * del_t + u[i%6000];
@@ -367,7 +399,7 @@ public class FullscreenActivity extends AppCompatActivity {
                         //Since we already let the user determine the speed in MainActivity
                         //and passed it to this activity via intent, let's call it up and
                         //speed up or slow down the graph accordingly
-                        int speed = getIntent().getIntExtra("speed", 1);
+                        int speed = getIntent().getIntExtra("speed", 2);
                         Thread.sleep(speed);
                     } catch (InterruptedException e) {
                         //Manage error ...
