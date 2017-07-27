@@ -364,16 +364,16 @@ public class FullscreenActivity extends AppCompatActivity {
 
                 //********************CALCULATE*******************//
                 for (int i = 0; i < 10000; i=(i+1)%6000) {
-                    double floor = i / 3000;
+                    double floor = i / stimRate;
                     double stinum = Math.floor(floor);
-                    Double stimt = 3000 + 3000 * (stinum - 1);
+                    Double stimt = stimRate + stimRate * (stinum - 1);
                     Integer intstim = stimt.intValue();
                     //increment constantly to reflect the onward march of time
                     iteration++;
 
                     f[i%6000] = v[i%6000] * (1 - ((v[i%6000] * v[i%6000]) / 3));
                     v[(i + 1)%6000] = 1 / c * (gna * f[i%6000] - gk * u[i%6000]) * del_t + v[i%6000];
-                    if (i%stimRate == 0) {
+                    if (i == intstim) {
                         v[(i + 1)%6000] = v[(i + 1)%6000] + v_stim;
                     }
                     u[(i + 1)%6000] = (v[i%6000] + beta - gamma * u[i%6000]) * del_t + u[i%6000];
