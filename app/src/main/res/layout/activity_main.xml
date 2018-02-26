@@ -106,7 +106,7 @@
         android:id="@+id/calcButton"
         android:layout_width="221dp"
         android:layout_height="48dp"
-        android:backgroundTint="@android:color/background_light"
+        android:backgroundTint="@android:color/black"
         android:text="Calculate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.503"

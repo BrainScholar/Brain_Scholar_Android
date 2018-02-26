@@ -31,6 +31,7 @@
                 android:backgroundTint="@android:color/background_light"
                 android:elevation="0dp"
                 android:text="Calculate"
+                android:textColor="@android:color/background_light"
                 android:textAlignment="center" />
 
             <TextView
@@ -56,7 +57,8 @@
                 android:max="100"
                 android:progress="9"
                 android:progressTint="@android:color/black"
-                android:thumbTint="@android:color/black" />
+                android:thumbTint="@android:color/black"
+                tools:targetApi="lollipop" />
 
             <TextView
                 android:id="@+id/textGKprogress"
